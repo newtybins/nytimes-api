@@ -1,0 +1,21 @@
+{
+  "name": "nytimes-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jacob Smith",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.14.1",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "^1.16.4"
+  }
+}
