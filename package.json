@@ -1,7 +1,7 @@
 {
   "name": "nytimes-api",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.0",
+  "description": "An API wrapper for the NY Times API!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
