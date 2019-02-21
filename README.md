@@ -1,3 +1,7 @@
+[![](https://img.shields.io/github/stars/jsmiith/nytimes-api.svg?color=yellow&label=Stargazers&logo=github&style=for-the-badge)]()
+[![](https://img.shields.io/github/watchers/jsmiith/nytimes-api.svg?color=yellow&label=Watchers&logo=github&style=for-the-badge)]()
+[![](https://img.shields.io/npm/v/nytimes-api.svg?color=red&label=Version&style=for-the-badge)](https://npmjs.com/package/nytimes-api)
+
 # nytimes-api
 
 An API wrapper for the NY Times API!
@@ -26,7 +30,7 @@ const popular = new Popular('your-super-secret-api-key'); // initiate the popula
 popular.mostEmailed(data => console.log(data[0]));
 ```
 
-### Most Viewed
+#### Most Viewed
 
 ```js
 const { Popular } = require('nytimes-api'); // get the Popular class from the nytimes-api package.
@@ -36,7 +40,7 @@ const popular = new Popular('your-super-secret-api-key'); // initiate the popula
 popular.mostViewed(data => console.log(data[0]));
 ```
 
-## Most Shared
+#### Most Shared
 
 ```js
 const { Popular } = require('nytimes-api'); // get the Popular class from the nytimes-api package.
@@ -48,7 +52,7 @@ popular.mostViewed(data => console.log(data[0]));
 
 ### Movies API
 
-## All Critics
+#### All Critics
 
 ```js
 const { Movies } = require('nytimes-api'); // get the Movies class from the nytimes-api package.
@@ -58,7 +62,7 @@ const movies = new Movies('your-super-secret-api-key'); // initiate Movies class
 movies.allCritics(data => console.log(data));
 ```
 
-## Critic's Pick
+#### Critic's Pick
 
 ```js
 const { Movies } = require('nytimes-api'); // get the Movies class from the nytimes-api package.
@@ -68,7 +72,7 @@ const movies = new Movies('your-super-secret-api-key'); // initiate Movies class
 movies.criticsPick(data => console.log(data[0]));
 ```
 
-## Search Critics
+#### Search Critics
 
 ```js
 const { Movies } = require('nytimes-api'); // get the Movies class from the nytimes-api package.
@@ -78,7 +82,7 @@ const movies = new Movies('your-super-secret-api-key'); // initiate Movies class
 movies.searchCritics('Ben Kenigsberg', data => console.log(data));
 ```
 
-## Search Reviews
+#### Search Reviews
 
 ```js
 const { Movies } = require('nytimes-api'); // get the Movies class from the nytimes-api package.
