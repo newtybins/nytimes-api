@@ -127,3 +127,9 @@ class Books {
     });
   }
 }
+
+module.exports = {
+  Popular,
+  Movies,
+  Books
+};
