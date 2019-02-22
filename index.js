@@ -1,8 +1,38 @@
 const request = require('request');
 
-const popularUri = 'http://api.nytimes.com/svc/mostpopular/v2';
-const movieUri = 'http://api.nytimes.com/svc/movies/v2';
-const booksUri = 'http://api.nytimes.com/svc/books/v3';
+const popularUri = 'https://api.nytimes.com/svc/mostpopular/v2';
+const movieUri = 'https://api.nytimes.com/svc/movies/v2';
+const booksUri = 'https://api.nytimes.com/svc/books/v3';
+const topUri = 'http://api.nytimes.com/svc/topstories/v2';
+
+const topSections = [
+  'arts',
+  'automobiles',
+  'books',
+  'business',
+  'fashion',
+  'food',
+  'health',
+  'home',
+  'insider',
+  'magazine',
+  'movies',
+  'national',
+  'nyregion',
+  'obituaries',
+  'opinion',
+  'politics',
+  'realestate',
+  'science',
+  'sports',
+  'sundayreview',
+  'technology',
+  'theater',
+  'tmagazine',
+  'travel',
+  'upshot',
+  'world'
+];
 
 class Popular {
   constructor(apiKey) {
@@ -128,8 +158,34 @@ class Books {
   }
 }
 
+class TopStories {
+  constructor(apiKey) {
+    this.apiKey = apiKey;
+  }
+
+  sections(callback) {
+    callback(topSections);
+  }
+
+  randomSection(callback) {
+    const random = topSections[Math.floor(Math.random() * topSections.length)];
+    callback(random);
+  }
+
+  topStories(section, callback) {
+    const url = `${topUri}/${section}.json?api-key=${this.apiKey}`;
+
+    request(url, (error, response, body) => {
+      if (!error & (response.statusCode == 200)) {
+        callback(JSON.parse(body).results);
+      }
+    });
+  }
+}
+
 module.exports = {
   Popular,
   Movies,
-  Books
+  Books,
+  TopStories
 };
