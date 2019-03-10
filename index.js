@@ -4,6 +4,7 @@ const popularUri = 'https://api.nytimes.com/svc/mostpopular/v2';
 const movieUri = 'https://api.nytimes.com/svc/movies/v2';
 const booksUri = 'https://api.nytimes.com/svc/books/v3';
 const topUri = 'http://api.nytimes.com/svc/topstories/v2';
+const archiveUri = 'http://api.nytimes.com/svc/archive/v1';
 
 const topSections = [
   'arts',
@@ -179,9 +180,28 @@ class TopStories {
   }
 }
 
+class Archive {
+  constructor(apiKey) {
+    if (!apiKey) throw new Error('No API Key provided.');
+
+    this.apiKey = apiKey;
+  }
+
+  getData(y, m, cb) {
+    const url = `${archiveUri}/${y}/${m}.json?api-key=${this.apiKey}`;
+
+    request(url, (err, res, body) => {
+      if (!err & (res.statusCode === 200)) {
+        cb(JSON.parse(body).response);
+      }
+    });
+  }
+}
+
 module.exports = {
   Popular,
   Movies,
   Books,
-  TopStories
+  TopStories,
+  Archive
 };
