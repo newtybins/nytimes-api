@@ -36,75 +36,71 @@ const topSections = [
 
 class Popular {
   constructor(apiKey) {
+    if (!apiKey) throw new Error('No API Key provided.');
+
     this.apiKey = apiKey;
   }
 
-  _sendRequest(type, callback) {
+  _sendRequest(type, cb) {
     const url = `${popularUri}/${type}/all-sections/7?api-key=${this.apiKey}`;
 
-    request(url, (error, response, body) => {
-      if (!error & (response.statusCode == 200)) {
-        callback(JSON.parse(body).results);
+    request(url, (err, res, body) => {
+      if (!err & (res.statusCode === 200)) {
+        cb(JSON.parse(body).results);
       }
     });
   }
 
-  mostEmailed(callback) {
-    this._sendRequest('mostemailed', callback);
+  mostEmailed(cb) {
+    this._sendRequest('mostemailed', cb);
   }
 
-  mostViewed(callback) {
-    this._sendRequest('mostviewed', callback);
+  mostViewed(cb) {
+    this._sendRequest('mostviewed', cb);
   }
 
-  mostShared(callback) {
-    this._sendRequest('mostshared', callback);
+  mostShared(cb) {
+    this._sendRequest('mostshared', cb);
   }
 }
 
 class Movies {
   constructor(apiKey) {
+    if (!apiKey) throw new Error('No API Key provided.');
+
     this.apiKey = apiKey;
   }
 
-  allCritics(callback) {
-    const url = `${movieUri}/critics/all.json?api-key=${this.apiKey}`;
+  _sendRequest(type, type2, cb) {
+    const url = `${movieUri}/${type}/${type2}.json?api-key=${this.apiKey}`;
 
-    request(url, (error, response, body) => {
-      if (!error & (response.statusCode == 200)) {
-        callback(JSON.parse(body).results);
+    request(url, (err, res, body) => {
+      if (!err & (res.statusCode === 200)) {
+        cb(JSON.parse(body).results);
       }
     });
   }
 
-  criticsPick(callback) {
-    const url = `${movieUri}/reviews/picks.json?api-key=${this.apiKey}`;
-
-    request(url, (error, response, body) => {
-      if (!error & (response.statusCode == 200)) {
-        callback(JSON.parse(body).results);
-      }
-    });
+  allCritics(cb) {
+    this._sendRequest('critics', 'all', cb);
   }
 
-  searchCritics(reviewer, callback) {
-    const url = `${movieUri}/critics/${reviewer}.json?api-key=${this.apiKey}`;
-
-    request(url, (error, response, body) => {
-      if (!error & (response.statusCode == 200)) {
-        callback(JSON.parse(body).results[0]);
-      }
-    });
+  criticsPick(cb) {
+    this._sendRequest('reviews', 'picks', cb);
   }
 
-  searchReviews(query, callback) {
+  searchCritics(reviewer, cb) {
+    this._sendRequest('critics', reviewer, cb);
+  }
+
+  searchReviews(query, cb) {
     const url = `${movieUri}/reviews/search.json?query=${query}&api-key=${
       this.apiKey
     }`;
 
-    request(url, (error, response, body) => {
-      if (!error & (response.statusCode == 200)) {
-        callback(JSON.parse(body).results[0]);
+    request(url, (err, res, body) => {
+      if (!err & (res.statusCode === 200)) {
+        cb(JSON.parse(body).results[0]);
       }
     });
   }
@@ -112,47 +108,45 @@ class Movies {
 
 class Books {
   constructor(apiKey) {
+    if (!apiKey) throw new Error('No API Key provided.');
+
     this.apiKey = apiKey;
   }
 
-  bestSellersLists(callback) {
-    const url = `${booksUri}/lists/names?api-key=${this.apiKey}`;
+  _sendRequest(type, cb) {
+    const url = `${booksUri}/lists/${type}?api-key=${this.apiKey}`;
 
-    request(url, (error, response, body) => {
-      if (!error & (response.statusCode == 200)) {
-        callback(JSON.parse(body).results);
+    request(url, (err, res, body) => {
+      if (!err & (res.statusCode === 200)) {
+        cb(JSON.parse(body).results);
       }
     });
   }
 
-  bestSellers(list, callback) {
+  bestSellersLists(cb) {
+    this._sendRequest('names', cb);
+  }
+
+  overview(cb) {
+    this._sendRequest('overview', cb);
+  }
+
+  bestSellers(list, cb) {
     const url = `${booksUri}/lists.json?list=${list}&api-key=${this.apiKey}`;
 
-    request(url, (error, response, body) => {
-      if (!error & (response.statusCode == 200)) {
-        callback(JSON.parse(body).results);
+    request(url, (err, res, body) => {
+      if (!err & (res.statusCode === 200)) {
+        cb(JSON.parse(body).results);
       }
     });
   }
 
-  overview(callback) {
-    const url = `${booksUri}/lists/overview.json?api-key=${this.apiKey}`;
+  searchReviews(q, cb) {
+    const url = `${booksUri}/reviews.json?title=${q}&api-key=${this.apiKey}`;
 
-    request(url, (error, response, body) => {
-      if (!error & (response.statusCode == 200)) {
-        callback(JSON.parse(body).results);
-      }
-    });
-  }
-
-  searchReviews(query, callback) {
-    const url = `${booksUri}/reviews.json?title=${query}&api-key=${
-      this.apiKey
-    }`;
-
-    request(url, (error, response, body) => {
-      if (!error & (response.statusCode == 200)) {
-        callback(JSON.parse(body).results);
+    request(url, (err, res, body) => {
+      if (!err & (res.statusCode === 200)) {
+        cb(JSON.parse(body).results);
       }
     });
   }
@@ -160,24 +154,26 @@ class Books {
 
 class TopStories {
   constructor(apiKey) {
+    if (!apiKey) throw new Error('No API Key provided.');
+
     this.apiKey = apiKey;
   }
 
-  sections(callback) {
-    callback(topSections);
+  sections(cb) {
+    cb(topSections);
   }
 
-  randomSection(callback) {
+  randomSection(cb) {
     const random = topSections[Math.floor(Math.random() * topSections.length)];
-    callback(random);
+    cb(random);
   }
 
-  topStories(section, callback) {
-    const url = `${topUri}/${section}.json?api-key=${this.apiKey}`;
+  topStories(s, cb) {
+    const url = `${topUri}/${s}.json?api-key=${this.apiKey}`;
 
-    request(url, (error, response, body) => {
-      if (!error & (response.statusCode == 200)) {
-        callback(JSON.parse(body).results);
+    request(url, (err, res, body) => {
+      if (!err & (res.statusCode === 200)) {
+        cb(JSON.parse(body).results);
       }
     });
   }

@@ -1,12 +1,8 @@
 {
   "name": "nytimes-api",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "An API wrapper for the NY Times API!",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
   "author": "Jacob Smith",
   "license": "MIT",
   "dependencies": {
