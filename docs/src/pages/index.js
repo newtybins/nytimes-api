@@ -12,7 +12,7 @@ export default () => (
 
     <h1 className="title">Interact with the New York Times' API with ease.</h1>
     <h3 className="subtitle">
-      Find out <Link to="/404">more</Link>...
+      Find out <Link to="/nytimes-api/docs">more</Link>...
     </h3>
   </div>
 )

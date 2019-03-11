@@ -9,13 +9,13 @@ export default () => (
   <nav>
     <ul>
       <li>
-        <Link to="/" className="brand">
+        <Link to="/nytimes-api" className="brand">
           nytimes-api
         </Link>
       </li>
       <div className="right">
         <li>
-          <Link to="/docs">Docs</Link>
+          <Link to="/nytimes-api/docs">Docs</Link>
         </li>
       </div>
     </ul>
