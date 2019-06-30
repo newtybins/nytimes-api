@@ -1,6 +1,6 @@
 [![](https://img.shields.io/github/stars/jsmiith/nytimes-api.svg?color=yellow&label=Stargazers&logo=github&style=for-the-badge)]()
 [![](https://img.shields.io/github/watchers/jsmiith/nytimes-api.svg?color=yellow&label=Watchers&logo=github&style=for-the-badge)]()
-[![](https://img.shields.io/npm/v/nytimes-api.svg?color=red&label=Version&style=for-the-badge)](https://npmjs.com/package/nytimes-api)
+[![](https://img.shields.io/npm/v/nytimes-api.svg?color=red&label=Version&style=for-the-badge)](https://npmjs.com/package/nytimes-api) [![Greenkeeper badge](https://badges.greenkeeper.io/jsmiith/nytimes-api.svg)](https://greenkeeper.io/)
 
 # nytimes-api
 
